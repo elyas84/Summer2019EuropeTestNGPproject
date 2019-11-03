@@ -31,6 +31,9 @@ public class NavigationDemo {
 
         driver.navigate().refresh();
 
+        driver.quit();
+
+
 
 
 
