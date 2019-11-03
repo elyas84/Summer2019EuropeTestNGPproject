@@ -19,6 +19,9 @@ public class WebDriverFactory {
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
                     break;
+                case "opera":
+                    WebDriverManager.operadriver().setup();
+                    break;
 
             }
 
