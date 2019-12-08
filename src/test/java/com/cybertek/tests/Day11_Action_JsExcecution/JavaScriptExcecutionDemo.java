@@ -1,14 +1,13 @@
 package com.cybertek.tests.Day11_Action_JsExcecution;
 
 import com.cybertek.utilities.WebDriverFactory;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 public class JavaScriptExcecutionDemo{
 
@@ -16,10 +15,12 @@ public class JavaScriptExcecutionDemo{
     @BeforeMethod
     public void setUpMethod(){
         driver = WebDriverFactory.getDriver("chrome");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
+
     @AfterMethod
     public void tearDownMethod(){
-      //  driver.quit();
+       driver.quit();
     }
     @Test
     public void click(){
@@ -64,6 +65,17 @@ public class JavaScriptExcecutionDemo{
     public void imgTest() throws InterruptedException {
         driver.get("http://practice.cybertekschool.com/hovers");
 
+
+        }
+        @Test
+    public void goToGoogle(){
+        driver.get("http://www.google.com");
+        WebElement input = driver.findElement(By.name("q"));
+        input.sendKeys("java"+ Keys.ENTER);// to hit the Enter key Keys.ENTER
+
+            WebElement pickFirst = driver.findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div/div/div/div[1]/a/h3/span"));
+            pickFirst.click();
+            driver.navigate().back();
 
         }
     }
