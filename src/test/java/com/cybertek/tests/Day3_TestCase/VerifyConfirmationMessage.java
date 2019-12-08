@@ -19,35 +19,38 @@ public class VerifyConfirmationMessage {
     public static void main(String[] args) throws InterruptedException {
         // open the browser
         WebDriver driver = WebDriverFactory.getDriver("chrome");
+
         //navigate to web site
         driver.get("http://practice.cybertekschool.com/forgot_password");
+
         //enter any email
        WebElement emailBox = driver.findElement(By.name("email"));
 
        String expectedEmail = "test@gmail.com";
-       //send expectedEmail
+
+        //send expectedEmail
         emailBox.sendKeys(expectedEmail);
-        String actualEmail = emailBox.getAttribute("value");
+        String actualEmail = emailBox.getAttribute("value");// this we use if get.text doesn't work!
+
         if(expectedEmail.equals(actualEmail)){
             System.out.println("Pass");
 
         }else {
             System.out.println("Fail");
         }
-        WebElement retieveButton = driver.findElement(By.id("form_submit"));
-        retieveButton.click();
+
+        WebElement retrieveButton = driver.findElement(By.id("form_submit"));
+        retrieveButton.click();
 
         String expectedMessage = " Your e-email's been sent ";
 
-        WebElement comfirmes = driver.findElement(By.name("confirmation_message"));
+        WebElement confirmationMessage = driver.findElement(By.name("confirmation_message"));
 
-        String actualMessage = comfirmes.getText();
+        String actualMessage = confirmationMessage.getText();
         System.out.println("actualMessage = " + actualMessage);
 
         if(expectedEmail.equals(actualEmail)){
-
             System.out.println("Pass");
-
         }else {
             System.out.println("Fail");
             System.out.println("actualMessage = " + actualMessage);

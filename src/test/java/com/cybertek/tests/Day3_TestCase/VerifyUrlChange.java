@@ -17,12 +17,14 @@ public class VerifyUrlChange {
         WebDriver driver = WebDriverFactory.getDriver("chrome");
         driver.get("http://practice.cybertekschool.com/forgot_password");
         WebElement emailBox = driver.findElement(By.name("email"));
-        //send keys ()--> send keybord actions to webelement
+        //send keys ()--> send keyboard actions to web element
         emailBox.sendKeys("email@exempel.com");
+
         WebElement retrievePassword = driver.findElement(By.id("form_submit"));
         retrievePassword.click();
-        String expectedURL = "http://practice.cybertekschool.com/email_sent";
-        String actualUrl = driver.getCurrentUrl();
+
+        String expectedURL = "http://practice.cybertekschool.com/email_sent"; // What we want to see( expected result)
+        String actualUrl = driver.getCurrentUrl();// to see actual URL;
 
         if(expectedURL.equals(actualUrl)){
 
