@@ -9,8 +9,11 @@ public class TestNGAssertionDemo {
     @Test
     public void test1(){
         System.out.println("First Assertion");
-     Assert.assertEquals(1,1);
+
+     Assert.assertEquals(1,1); //check the value
+
         System.out.println("Second Assertion");
+
         Assert.assertEquals("title","title");
         System.out.println("After second assertion");
     }
@@ -32,8 +35,24 @@ public class TestNGAssertionDemo {
 
         Assert.assertNotEquals("one","two","Pass");
     }
+
     @Test
     public void test4 (){
+
         Assert.assertFalse(1>4);
+    }
+    @Test
+    public void testEmail(){
+        Assert.assertTrue("email@example.com".contains("@"),"Verify that email contains @ sign");
+
+    }
+
+    @Test
+    public void test5(){
+        Assert.assertNotEquals("one","One","Verify that it is not equale..");
+    }
+    @Test
+    public void test6(){
+        Assert.assertFalse("one".contains("P"),"find false");
     }
 }

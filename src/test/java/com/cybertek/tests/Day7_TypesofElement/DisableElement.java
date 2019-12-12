@@ -9,30 +9,35 @@ import org.testng.annotations.Test;
 
 public class DisableElement {
     @Test
-            public void test1() throws InterruptedException {
-
+    public void test1()  {
         WebDriver driver = WebDriverFactory.getDriver("chrome");
         driver.get("http://practice.cybertekschool.com/radio_buttons");
-       WebElement greenradioButton = driver.findElement(By.id("green"));
-        System.out.println("green radioButton is enable = " + greenradioButton.isEnabled());
-        Assert.assertFalse(greenradioButton.isEnabled());
-        greenradioButton.click();
+        WebElement greenRadioButton = driver.findElement(By.cssSelector("input#green"));
+        System.out.println("greenRadioButton.isEnabled() = " + greenRadioButton.isEnabled());
 
-
+        Assert.assertTrue(greenRadioButton.isDisplayed());
     }
-
     @Test
     public void test2(){
         WebDriver driver = WebDriverFactory.getDriver("chrome");
         driver.get("http://practice.cybertekschool.com/dynamic_controls");
-        WebElement inputBox = driver.findElement(By.cssSelector("#input-example>input"));
-        System.out.println("inputBox is enable= " + inputBox.isEnabled());
-
-        driver.quit();
-
+        WebElement disableInput = driver.findElement(By.xpath("//input[@type='text']"));
+        System.out.println("disableInput.isEnabled() = " + disableInput.isEnabled());
+        Assert.assertFalse(disableInput.isEnabled());
 
     }
+    @Test
+    public void testMine() throws InterruptedException {
+        // Verify that disable button is clicked
+        WebDriver driver = WebDriverFactory.getDriver("chrome");
+        driver.get("http://practice.cybertekschool.com/dynamic_controls");
+        WebElement enableButton =  driver.findElement(By.xpath("//button[@onclick='swapInput()']"));
+        enableButton.click();
 
 
 
+
+
+        //driver.quit();
+    }
 }

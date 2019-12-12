@@ -30,17 +30,17 @@ public class BeforeAndAfterTest {
         System.out.println("Before method ");
         System.out.println("Opening the browser");
     }
-@AfterMethod
+    @AfterMethod
     public void closing(){
     System.out.println("Close the browser");
 }
 
-@BeforeClass
+    @BeforeClass
     public void beforeClass(){
     System.out.println("before class code".toUpperCase());
 
 }
-@AfterClass
+    @AfterClass
     public void afterClass(){
     System.out.println("After class code".toUpperCase());
     System.out.println("Reporting".toUpperCase());
