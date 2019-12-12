@@ -16,8 +16,6 @@ import java.util.concurrent.TimeUnit;
 public class LoginTest  extends TestBase {
 
 
-
-
     @Test
     public void test(){
         Driver.get().get("https://qa2.vytrack.com/user/login");
