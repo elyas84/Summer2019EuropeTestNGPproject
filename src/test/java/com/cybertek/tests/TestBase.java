@@ -18,9 +18,10 @@ public class TestBase {
     @BeforeMethod
     public void setUpMethod() {
         driver = Driver.get();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         actions = new Actions(driver);
-        wait = new WebDriverWait(driver,10);
+        wait = new WebDriverWait(driver,20);
 
 
 
