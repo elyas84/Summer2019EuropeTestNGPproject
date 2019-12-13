@@ -13,22 +13,28 @@ public class ListOfElements {
     public void test1 (){
 
         WebDriver driver = WebDriverFactory.getDriver("chrome");
-        driver.get("http://practice.cybertekschool.com/radio_buttons");
-        List<WebElement> buttons = driver.findElements(By.tagName("buttons"));
+        driver.get("http://practice.cybertekschool.com/multiple_buttons");
+        List<WebElement> buttons = driver.findElements(By.xpath("//button"));
         System.out.println("buttons = " + buttons.size());
 
-
-
+        for (WebElement lists : buttons){
+            System.out.println("lists = " + lists.getText());
+        }
     }
 
     @Test
-    public void tese2(){
+    public void test2(){
 
         WebDriver driver = WebDriverFactory.getDriver("chrome");
         driver.get("http://practice.cybertekschool.com/radio_buttons");
-        // wrong lacator doest give us wrong messg, it gives empty list
-        List<WebElement> buttons = driver.findElements(By.tagName("buttonsdafdg"));
-        System.out.println(buttons.size());
+        // wrong locator doest give us wrong massage, it gives empty list
+
+        List<WebElement> buttons = driver.findElements(By.cssSelector("div.radio"));
+        System.out.println("buttons.size() = " + buttons.size());
+
+        for (WebElement value : buttons){
+            System.out.println("value = " + value.getText());
+        }
 
 
     }
