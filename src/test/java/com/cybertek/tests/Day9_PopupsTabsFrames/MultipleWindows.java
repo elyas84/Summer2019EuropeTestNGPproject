@@ -17,56 +17,72 @@ public class MultipleWindows {
     }
     @AfterMethod
     public void tearDownMethod() throws InterruptedException {
-        Thread.sleep(4000);
+        Thread.sleep(2000);
 
         driver.quit();
     }
         @Test
-    public void windwosHandle(){
+    public void windowsHandle(){
+
         driver.get("http://practice.cybertekschool.com/windows");
-        driver.findElement(new By.ByLinkText("Click Here")).click();
-        System.out.println("After clicking the link"+driver.getTitle());
+        //Before clicking the nwe tap link
+            System.out.println("before clicking the the LINK-->"+driver.getTitle());
 
-        String currentWindowHandle = driver.getWindowHandle();
-            System.out.println("currentWindowHandle = " + currentWindowHandle);
-        Set<String> windowsHandles = driver.getWindowHandles();
-            System.out.println(windowsHandles.size());
+        //after clicking the new tab link
+        driver.findElement(By.xpath("//a[text()='Click Here']")).click();
+            System.out.println("after clicking the LINK-->"+driver.getTitle());
 
-            for (String handlde: windowsHandles){
-                if (!currentWindowHandle.equals(handlde)){
-                    driver.switchTo().window(handlde);
+            String currentWindowsHandles = driver.getWindowHandle();
+            System.out.println("currentWindowsHandles = " + currentWindowsHandles);
+
+
+            //above!!!We can not see if new tab is opened or not by using this method!!!!
+
+            //code for switching windows
+            // driver.switchTo().window();
+            //Set is just like an arrayList but without duplicate value
+
+            Set<String> widowsHandles = driver.getWindowHandles(); //import the Set List
+            System.out.println("widowsHandle.size() = " + widowsHandles.size());
+
+            //Our problem is how can we get new windows handle from Set of handles. there is no index
+
+            for (String handle : widowsHandles){
+                if(!currentWindowsHandles.equals(handle)){
+                    driver.switchTo().window(handle);
                 }
             }
+            System.out.println("After switching "+ driver.getTitle());
 
-            System.out.println("After Switching new Window: "+driver.getTitle());
+            //Getting text of the new window
+            System.out.println(driver.findElement(By.xpath("//h3")).getText());
 
         }
+
         @Test
     public void moreThan2Window(){
-        driver.get("http://practice.cybertekschool.com/windows");
-        driver.findElement(By.linkText("Click Here")).click();
-        //check how many window we have
+
+            driver.get("http://practice.cybertekschool.com/windows");
+
+            String targetWindowTitle = "New Window";
+
+            driver.findElement(By.xpath("//a[text()='Click Here']")).click();
+
+            //Check how many window wa have
             System.out.println(driver.getWindowHandles().size());
-            Set<String> windowsHandles = driver.getWindowHandles();
 
-            // we will keep switching windows until our title equals to targetWindowsTitle
+            Set<String> windowHandles = driver.getWindowHandles();
 
-           /* for (String handle : windowsHandles) {
-                //switch them one by one
+            //We will keep switching windows until our title equal to targetWindowTitle
+
+            for(String handle : windowHandles){
                 driver.switchTo().window(handle);
-                //checking if the window title equals to my target window title
-                if(driver.getTitle().equals()){
-                    //if they are equal stop looping.I want to keep that window driver.
+                if(driver.getTitle().equals(targetWindowTitle)){
                     break;
                 }
             }
-            System.out.println("After loop title is : "+driver.getTitle());
+            System.out.println("After loop title "+driver.getTitle());
+            
         }
 
-            */
-
-
-
-
-        }
 }

@@ -1,0 +1,48 @@
+package com.cybertek.tests.Day9_PopupsTabsFrames;
+
+import com.cybertek.utilities.WebDriverFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
+
+public class MultipleFrames {
+
+    WebDriver driver;
+    @BeforeMethod
+    public void setUPMethod(){
+        driver = WebDriverFactory.getDriver("chrome");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+    }
+    @AfterMethod
+    public void tearDownMethod() throws InterruptedException {
+        Thread.sleep(3000);
+        driver.quit();
+    }
+    @Test
+    public void multiFrames(){
+        driver.get("http://practice.cybertekschool.com/nested_frames");
+
+        driver.switchTo().frame("frame-top");
+        driver.switchTo().frame("frame-middle");
+        System.out.println(driver.findElement(By.id("content")).getText());
+
+        //Go back to parent and and gos to right frame
+        driver.switchTo().parentFrame();
+        driver.switchTo().frame(0);
+        System.out.println(driver.findElement(By.tagName("body")).getText());
+
+        driver.switchTo().defaultContent();
+        driver.switchTo().frame(1);
+        System.out.println(driver.findElement(By.tagName("body")).getText());
+
+
+
+
+
+    }
+}
