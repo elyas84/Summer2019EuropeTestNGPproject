@@ -4,9 +4,12 @@ import com.cybertek.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 public class FileUploadTest {
 
@@ -14,19 +17,42 @@ public class FileUploadTest {
     @BeforeMethod
     public void SetUppMethod(){
         driver = WebDriverFactory.getDriver("chrome");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
     @AfterMethod
     public void tearDownMethod() throws InterruptedException {
-        Thread.sleep(2000);
         driver.quit();
     }
+
     @Test
     public void test1(){
         driver.get("http://practice.cybertekschool.com/upload");
-        WebElement chooseFile = driver.findElement(By.name("file"));
-        chooseFile.sendKeys("C:\\Users\\Elyas\\Desktop\\project.docx");
-        WebElement upLoadBtn = driver.findElement(By.id("file-submit"));
-        upLoadBtn.click();
 
+      //"C:\Users\Elyas\Desktop\exampleDoc.txt" is my cpy Path!!!
+      driver.findElement(By.cssSelector("#file-upload")).sendKeys("");
+      driver.findElement(By.cssSelector("#file-submit")).click();
+
+      //Verifying testCase!!
+      System.out.println(driver.findElement(By.xpath("//*[.='File Uploaded!']")).getText());
+      Assert.assertTrue(driver.findElement(By.xpath("//*[.='File Uploaded!']")).isDisplayed());
+    }
+
+    @Test
+    public void test2(){
+        driver.get("http://practice.cybertekschool.com/upload");
+
+        System.out.println(System.getProperty("user.dir")); // user.dir = user directory : folder!!
+        String projectPath = System.getProperty("user.dir");
+        String relativePath ="/src/test/Resources/testFile.txt";
+
+        String filePath = projectPath+"/"+relativePath;
+        System.out.println(filePath);
+
+        driver.findElement(By.cssSelector("#file-upload")).sendKeys(filePath);
+        driver.findElement(By.cssSelector("#file-submit")).click();
+
+        //Verifying testCase!!
+        System.out.println(driver.findElement(By.xpath("//*[.='File Uploaded!']")).getText());
+        Assert.assertTrue(driver.findElement(By.xpath("//*[.='File Uploaded!']")).isDisplayed());
     }
 }

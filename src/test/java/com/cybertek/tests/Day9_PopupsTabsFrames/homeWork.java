@@ -87,6 +87,20 @@ public class homeWork {
         System.out.println("driver.findElement(By.xpath(\"//p\")).getText() = " + driver.findElement(By.xpath("//p")).getText());
         Assert.assertTrue(driver.findElement(By.xpath("//p")).isDisplayed());
     }
+    @Test
+    public void testCase_6(){
+        driver.get("https://www.tempmailaddress.com/");
+        String email =driver.findElement(By.xpath("//span[@class='animace']")).getText();
+
+        driver.get("https://practice-cybertekschool.herokuapp.com/");
+        driver.findElement(By.xpath("//a[.='Sign Up For Mailing List']")).click();
+        driver.findElement(By.xpath("//input[@name='full_name']")).sendKeys("Mike Smith");
+
+        driver.findElement(By.xpath("//input[@name='email']")).sendKeys(email);
+        driver.findElement(By.xpath("//button[.='Sign Up']")).click();
+        String message =driver.findElement(By.xpath("//h3")).getText();
+        Assert.assertTrue(message.endsWith(" home page."));
+    }
 
 
 }

@@ -25,30 +25,43 @@ public class ExplicitWaitTest {
     @Test
     public void test1(){
         driver.get("http://practice.cybertekschool.com/dynamic_loading/1");
-        driver.findElement(By.tagName("button"));
-        WebElement start= driver.findElement(By.xpath("//*[@id=\"start\"]/button"));
-        start.click();
-        WebElement userName= driver.findElement(By.id("username"));
+
+        //Clicking the start button
+        driver.findElement(By.xpath("//button[.='Start']")).click();
+
+        WebElement userName= driver.findElement(By.cssSelector("input#username"));
+
         //How to wait explicitly
-        // Create explicitly object
-        WebDriverWait wait = new WebDriverWait(driver, 60);
-        //
+        //Create explicitly object
+        WebDriverWait wait = new WebDriverWait(driver, 10);//This constructor is dealing with the current driver
+
+
+        //When we wait a specific element from driver then we gonna use explicitly wait!!!!!
+        //call until method from wait object
+        //Waiting for the specific element to be visible( up to 10 sec.)
         wait.until(ExpectedConditions.visibilityOf(userName));
 
+        //Sending some username
         userName.sendKeys("Mike Smith");
+
+        WebElement passwordInput = driver.findElement(By.cssSelector("input#pwd"));
+        WebDriverWait wait1 = new WebDriverWait(driver,10);
+        wait1.until(ExpectedConditions.visibilityOf(passwordInput)).sendKeys("1233456");
+
     }
     @Test
     public void test2(){
         driver.get("http://practice.cybertekschool.com/dynamic_controls");
-        WebElement inputBox = driver.findElement(By.xpath("//*[@id=\"input-example\"]/input"));
         // Click enable button
-        driver.findElement(By.xpath("//*[@id=\"input-example\"]/button")).click();
+        driver.findElement(By.xpath("//button[@onclick='swapInput()']")).click();
+
+        //Finding input box
+         WebElement inputBox = driver.findElement(By.xpath("//input[@type='text']"));
+
         WebDriverWait wait = new WebDriverWait(driver,30);
-        wait.until(ExpectedConditions.elementToBeClickable(inputBox));
-        inputBox.sendKeys("Mike Smith");
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//button[@onclick='swapInput()']"))));
 
-
-
+        driver.findElement(By.xpath("//input[@type='text']")).sendKeys("Mike Smith");
 
     }
 }
