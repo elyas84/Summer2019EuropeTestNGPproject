@@ -1,5 +1,6 @@
 package com.cybertek.tests;
 
+import com.cybertek.utilities.ConfigurationReader;
 import com.cybertek.utilities.Driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -19,10 +20,10 @@ public class TestBase {
     public void setUpMethod() {
         driver = Driver.get();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
+       // driver.manage().window().maximize();
         actions = new Actions(driver);
         wait = new WebDriverWait(driver,20);
-
+        driver.get(ConfigurationReader.get("url"));
 
 
     }
@@ -30,7 +31,8 @@ public class TestBase {
     @AfterMethod
     public void tearDownMethod() throws InterruptedException {
 
-        Thread.sleep(3000);
-        driver.quit();
+        Thread.sleep(1000);
+        Driver.closeDriver(); // if we use driver.quit, then we can not implement using one by one!!!
     }
+
 }
