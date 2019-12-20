@@ -5,10 +5,8 @@ import org.testng.annotations.Test;
 public class Singleton {
 
     //Singleton class will have private constructor
-    //singleton class will have private constructor
-    private Singleton(){
-
-    }
+    //Singleton class will have private constructor
+    private Singleton(){}
 
     private static String str;
 

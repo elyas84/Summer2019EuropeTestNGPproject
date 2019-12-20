@@ -18,7 +18,7 @@ public class LoginTest  extends TestBase {
 
     @Test
     public void test(){
-        Driver.get().get("https://qa2.vytrack.com/user/login");
+        Driver.get().get(ConfigurationReader.get("url"));
         driver.findElement(By.cssSelector("input#prependedInput")).sendKeys("User1");
         driver.findElement(By.cssSelector("input#prependedInput2")).sendKeys("UserUser123"+ Keys.ENTER);
     }

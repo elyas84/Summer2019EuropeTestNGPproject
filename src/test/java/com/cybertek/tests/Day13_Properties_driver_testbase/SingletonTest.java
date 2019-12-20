@@ -12,6 +12,8 @@ public class SingletonTest {
         //Singleton concept and reason---> The thing with that we shall use same browser whole the way!!!!
         //Singleton prevent the potential problems.
 
+        //the main thing with that,, everybody use same browser whole the way
+
         String s1 = Singleton.getInstance();
         String s2 = Singleton.getInstance();
 
@@ -28,11 +30,13 @@ public class SingletonTest {
 
         WebDriver driver= Driver.get();
         driver.get(ConfigurationReader.get("url"));
-        Driver.get().navigate().refresh();
+
     }
     @Test
     public  void test3(){
        Driver.get().get("http://amazon.com");
+       Driver.get().navigate().refresh();
+       
        Driver.closeDriver();
 
     }

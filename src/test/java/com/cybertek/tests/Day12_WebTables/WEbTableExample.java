@@ -32,8 +32,9 @@ public class WEbTableExample {
     public void printTable(){
 
         WebElement table = driver.findElement(By.id("table1"));
+        // if we want to print whole table, we can print " table"
         String wholeTable = table.getText();
-
+        System.out.println("wholeTable = " + wholeTable);
         //verify that jsmith@gmail.com is there in the table.
         Assert.assertTrue(wholeTable.contains("jsmith@gmail.com"),"Verify jsmith@gmail.com is in the table");
     }
@@ -59,7 +60,7 @@ public class WEbTableExample {
         System.out.println("allRowsWithHeader = " + allRowsWithHeader.size());
 
 
-        //Number of rows without header( we prefer this
+        //Number of rows without header( we prefer this)
         List<WebElement> allRowsWithoutHeader = driver.findElements(By.xpath("//table[@id='table1']/tbody/tr"));
         System.out.println("allRowsWithoutHeader = " + allRowsWithoutHeader.size());
         System.out.println("allRowsWithoutHeader = " + allRowsWithoutHeader);

@@ -8,10 +8,15 @@ public class PropertiesTest {
     public void test1(){
 
         //This is a central structure that we gonna use!!!
+
+        //to get these information we use get method
         System.out.println(ConfigurationReader.get("browser"));
+
         System.out.println(ConfigurationReader.get("url"));
-        System.out.println(ConfigurationReader.get("UserName"));
-        System.out.println(ConfigurationReader.get("UserPassword"));
+
+        System.out.println(ConfigurationReader.get("driver_username"));
+
+        System.out.println(ConfigurationReader.get("salesmanger_username"));
 
 
     }
