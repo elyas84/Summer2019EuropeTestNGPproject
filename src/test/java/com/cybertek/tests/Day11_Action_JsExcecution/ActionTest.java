@@ -33,22 +33,21 @@ public class ActionTest {
     public void HoverTest() {
         driver.get("http://practice.cybertekschool.com/hovers");
 
-        //Action --> class that contains all the user interaction
+        //Actions is is class that contains all the user interactions
         //how to create actions object / passing driver as a constructor
         Actions actions = new Actions(driver);
+        WebElement img = driver.findElement(By.xpath("//img"));
 
-        WebElement img1 = driver.findElement(By.xpath("//*[@id=\"content\"]/div/div[1]/img"));
+        //Perform ()--> perform the action. complete the action
+        actions.moveToElement(img).perform();
+        Assert.assertTrue(driver.findElement(By.linkText("View profile")).isDisplayed(),"Verify that the message is displayed");
 
-        //perform() --> perform the action. complete the action
-        //moveToElement()--> move your mouse to WebElement (hover over)
-
-        actions.moveToElement(img1).perform();
-        Assert.assertTrue(driver.findElement(By.linkText("View profile")).isDisplayed(), "view is displayed");
 
     }
 
     @Test
     public void DragAndDropTest(){
+
         driver.get("https://demos.telerik.com/kendo-ui/dragdrop/index");
 
         Actions actions = new Actions(driver);
@@ -64,7 +63,8 @@ public class ActionTest {
 
     }
         @Test
-        public void DragAndDropChaining() {
+        public void DragAndDropTestChaining(){
+
             driver.get("https://demos.telerik.com/kendo-ui/dragdrop/index");
 
             Actions actions = new Actions(driver);
@@ -76,9 +76,8 @@ public class ActionTest {
             driver.findElement(By.xpath("//button[.='Accept Cookies']")).click();
 
 
-            // if you are chaning actions we add build build() method before perform.
-            actions.moveToElement(source).clickAndHold().moveToElement(target).pause(2000).release().build().perform();
-
+            //If you are chaining actions we add build () method before perform
+            actions.moveToElement(source).clickAndHold().moveToElement(target).release().build().perform();
 
         }
 

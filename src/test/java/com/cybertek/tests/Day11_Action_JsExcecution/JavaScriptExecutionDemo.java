@@ -3,13 +3,14 @@ package com.cybertek.tests.Day11_Action_JsExcecution;
 import com.cybertek.utilities.WebDriverFactory;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class JavaScriptExcecutionDemo{
+public class JavaScriptExecutionDemo {
 
     WebDriver driver;
     @BeforeMethod
@@ -19,13 +20,15 @@ public class JavaScriptExcecutionDemo{
     }
 
     @AfterMethod
-    public void tearDownMethod(){
-       driver.quit();
+    public void tearDownMethod() throws InterruptedException {
+       Thread.sleep(2000);
+        driver.quit();
     }
     @Test
     public void click(){
         driver.get("http://practice.cybertekschool.com/");
-        WebElement link = driver.findElement(By.linkText("Dropdown"));
+        WebElement link = driver.findElement(By.linkText("Dropdown")); // sometimes selenium click it doesn't work
+        //then we can use JS click and provide the click function
 
         //create JS executor object
         //run js code with that object
@@ -37,33 +40,50 @@ public class JavaScriptExcecutionDemo{
     @Test
     public void type(){
         driver.get("http://practice.cybertekschool.com/dynamic_controls");
-        WebElement inputBox = driver.findElement(By.tagName("input[type='text']"));
-        JavascriptExecutor js = (JavascriptExecutor)driver;
-        String str = "Hello disable inputBox";
-        js.executeScript("  jse.executeScript(\"arguments[0].setAttribute('value', '" + str +"'),inputBox");
-        // it didn't get throught!
+        WebElement inputText = driver.findElement(By.xpath("//input[@type='text']"));
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        String str = "Mike Smith";
+        jse.executeScript("arguments[0].setAttribute('value', '" + str +"')",inputText);
+
+        //Using Google and copy and past.
+        //We can send a message by using JS code, even input box not enable;
     }
 
 
     @Test
     public void Scroll() throws InterruptedException {
+
         driver.get("http://practice.cybertekschool.com/infinite_scroll");
-        JavascriptExecutor srl = (JavascriptExecutor)driver;
 
-        for (int i=0; i<10; i++){ // scrolling down
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        //With help of loop, we can see apparently how scrolling is working
+        //This is scrolling down
+        for (int i=0; i<10; i++){
             Thread.sleep(500);
-            srl.executeScript("window.scrollBy(0,250)");
+            jse.executeScript("window.scrollBy(0,250)");
         }
 
-        for (int i=0; i<5; i++){
-            Thread.sleep(1000);
-            srl.executeScript("window.scrollBy(0,-250)");
+        //Thees code are available in Google.
+        //This is scrolling up
+        for (int i=0; i<10; i++){
+            Thread.sleep(500);
+            jse.executeScript("window.scrollBy(0,-250)");
         }
-
     }
+
     @Test
+
     public void imgTest() throws InterruptedException {
         driver.get("http://practice.cybertekschool.com/hovers");
+
+        //Hover one bu one by using Loop and then we can get a Dynamic manner
+        for(int i=1; i<4; i++){
+            String imgXpath= "(//img)["+i+"]";
+            WebElement img = driver.findElement(By.xpath(imgXpath));
+            Actions actions = new Actions(driver);
+            actions.moveToElement(img).perform();
+        }
+
 
 
         }
