@@ -16,7 +16,7 @@ public class PropertiesTest {
 
         System.out.println(ConfigurationReader.get("driver_username"));
 
-        System.out.println(ConfigurationReader.get("salesmanger_username"));
+
 
 
     }

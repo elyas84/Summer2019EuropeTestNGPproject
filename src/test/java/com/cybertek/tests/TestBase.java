@@ -31,7 +31,7 @@ public class TestBase {
     @AfterMethod
     public void tearDownMethod() throws InterruptedException {
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         Driver.closeDriver(); // if we use driver.quit, then we can not implement using one by one!!!
     }
 

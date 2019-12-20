@@ -9,18 +9,28 @@ public class LoginPage {
         public LoginPage(){
                 PageFactory.initElements(Driver.get(),this);
         }
+
+
         //same with driver.findElement(By.id("prependedInput"));
-        @FindBy(name = "_username")
-        public WebElement usernameInput;
+
+        @FindBy(id = "prependedInput")
+        public WebElement userInput;
+
         @FindBy(id = "prependedInput2")
         public WebElement passwordInput;
+
+
         @FindBy(id = "_submit")
         public WebElement loginBtn;
+
         public void login(String usernameStr,String passwordStr){
-                usernameInput.sendKeys(usernameStr);
-                passwordInput.sendKeys(passwordStr);
+                userInput.sendKeys(usernameStr);
+                passwordInput.sendKeys(usernameStr);
                 loginBtn.click();
         }
+
+
+
 }
 
 

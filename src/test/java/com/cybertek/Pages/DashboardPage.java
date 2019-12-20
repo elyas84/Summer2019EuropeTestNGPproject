@@ -7,9 +7,11 @@ public class DashboardPage extends  BasePage{
 
     //No need to write this again, because we have already extends from basPage
 
-     // public  DashboardPage(){
-    //       PageFactory.initElements(Driver.get(),this);
-    //
-    //    }
+     public  DashboardPage(){
+     PageFactory.initElements(Driver.get(),this);
+
+      }
+
+
 
 }
