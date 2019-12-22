@@ -5,6 +5,8 @@ import com.cybertek.utilities.Driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITest;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -24,12 +26,21 @@ public class TestBase {
         actions = new Actions(driver);
         wait = new WebDriverWait(driver,20);
         driver.get(ConfigurationReader.get("url"));
+        driver.manage().window().maximize();
 
 
     }
 
+    //ITESTRESUT class describe the result of a verifyContactInfoTest in TestNG
     @AfterMethod
-    public void tearDownMethod() throws InterruptedException {
+    public void tearDownMethod(ITestResult result) throws InterruptedException {
+
+        if(result.getStatus()==ITestResult.FAILURE){
+
+        }
+
+
+
 
         Thread.sleep(2000);
         Driver.closeDriver(); // if we use driver.quit, then we can not implement using one by one!!!

@@ -7,13 +7,13 @@ public class FirstTestNgTest {
     @Test
     public void test1(){
 
-        System.out.println("My first testNG test");
+        System.out.println("My first testNG verifyContactInfoTest");
     }
 
     @Test
     public void test2(){
 
-        System.out.println("My second testTG test");
+        System.out.println("My second testTG verifyContactInfoTest");
     }
 
 

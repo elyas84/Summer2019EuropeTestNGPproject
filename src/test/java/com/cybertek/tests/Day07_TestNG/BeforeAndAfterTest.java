@@ -6,10 +6,10 @@ public class BeforeAndAfterTest {
 
     @Test
     public void test1(){
-        System.out.println("this is test 1");
+        System.out.println("this is verifyContactInfoTest 1");
 
     }
-    //beginning of the each test
+    //beginning of the each verifyContactInfoTest
     // WebDriver code
     //driver.get
     //maximize window

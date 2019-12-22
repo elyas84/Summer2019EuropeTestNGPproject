@@ -43,7 +43,7 @@ public class FileUploadTest {
 
         System.out.println(System.getProperty("user.dir")); // user.dir = user directory : folder!!
         String projectPath = System.getProperty("user.dir");
-        String relativePath ="/src/test/Resources/testFile.txt";
+        String relativePath ="/src/verifyContactInfoTest/Resources/testFile.txt";
 
         String filePath = projectPath+"/"+relativePath;
         System.out.println(filePath);

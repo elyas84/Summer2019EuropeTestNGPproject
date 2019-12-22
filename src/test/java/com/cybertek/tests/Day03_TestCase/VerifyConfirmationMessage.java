@@ -26,7 +26,7 @@ public class VerifyConfirmationMessage {
         //enter any email
        WebElement emailBox = driver.findElement(By.name("email"));
 
-       String expectedEmail = "test@gmail.com";
+       String expectedEmail = "verifyContactInfoTest@gmail.com";
 
         //send expectedEmail
         emailBox.sendKeys(expectedEmail);
