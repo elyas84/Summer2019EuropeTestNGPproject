@@ -14,45 +14,45 @@ public class verifyContactInfoTest extends TestBase {
    @Test
 
     public void contactDetailsTest(){
-      extentLogger = report.createTest("Verify full name");
+      extentLogger = report.createTest("contactDetailsTest");
        LoginPage loginPage = new LoginPage();
 
        String username = ConfigurationReader.get("driver_username");
-       extentLogger.info("Enter username");
        String password = ConfigurationReader.get("driver_password");
-       extentLogger.info("Enter password");
+       extentLogger.info("username: "+username);
+       extentLogger.info("password: "+password);
+       extentLogger.info("Login as a Driver");
+
        loginPage.login(username,password);
 
-       DashboardPage dashboardPage = new DashboardPage();
-       dashboardPage.navigateToModule("Customers","Contacts");
-       extentLogger.info("Navigate to Customers and Contacts");
-       dashboardPage.waitUntilLoaderScreenDisappear();
-
-
         ContactsPage contactsPage = new ContactsPage();
-        extentLogger.info("Click the email link");
+        extentLogger.info("Navigate to Customers--> Contacts");
+        contactsPage.navigateToModule("Customers","Contacts");
+
+        contactsPage.waitUntilLoaderScreenDisappear();
+        extentLogger.info("Click on mbrackstone9@example.com ");
         contactsPage.getContactEmail("mbrackstone9@example.com").click();
-       contactsPage.waitUntilLoaderScreenDisappear();
-
-       ContactInfoPage contactInfoPage = new ContactInfoPage();
 
 
-       contactsPage.waitUntilLoaderScreenDisappear();
-       extentLogger.info("Getting the actual full name");
-       String actualFullName = contactInfoPage.fullName.getText();
-       extentLogger.info("Expected full name");
-       String expectedFullName ="Ms Mariam Brackstone";
 
-       extentLogger.pass("actual full name and expected full name is equal");
-       Assert.assertEquals(actualFullName,expectedFullName);
+        ContactInfoPage contactInfoPage = new ContactInfoPage();
+        String actualFullName = contactInfoPage.fullname.getText();
+        String expectedFullName = "Ms Mariam Breakstone";
 
-       extentLogger.info("Actual email");
-       String actualEmail = contactInfoPage.email.getText();
-       extentLogger.info("Expected email");
-       String expectedEmail = "mbrackstone9@example.com";
+        extentLogger.info("Verify fullName is "+expectedFullName);
+        Assert.assertEquals(actualFullName,expectedFullName,"Verify fullName");
 
-       extentLogger.pass("Actual email and expected email is matching");
-       Assert.assertEquals(actualEmail,expectedEmail,"Verify that email is matching");
+        //Short way
+        extentLogger.info("Verify email is mbrackstone9@example.com");
+        Assert.assertEquals(contactInfoPage.email.getText(),"mbrackstone9@example.com");
+
+        extentLogger.info("Verify phoneNumber +18982323434A");
+        Assert.assertEquals(contactInfoPage.phone.getText(),"+18982323434");
+
+
+
+
+
 
 
 
