@@ -39,6 +39,7 @@ public class verifyContactInfoTest extends TestBase {
         String actualFullName = contactInfoPage.fullname.getText();
         String expectedFullName = "Ms Mariam Breakstone";
 
+        contactInfoPage.waitUntilLoaderScreenDisappear();
         extentLogger.info("Verify fullName is "+expectedFullName);
         Assert.assertEquals(actualFullName,expectedFullName,"Verify fullName");
 
@@ -46,7 +47,7 @@ public class verifyContactInfoTest extends TestBase {
         extentLogger.info("Verify email is mbrackstone9@example.com");
         Assert.assertEquals(contactInfoPage.email.getText(),"mbrackstone9@example.com");
 
-        extentLogger.info("Verify phoneNumber +18982323434A");
+        extentLogger.info("Verify phoneNumber +18982323434");
         Assert.assertEquals(contactInfoPage.phone.getText(),"+18982323434");
 
 
