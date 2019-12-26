@@ -19,13 +19,13 @@ public class SelectClassTest {
         WebElement dropDownElement = driver.findElement(By.cssSelector("#state"));
         //We used constructor here!!!!!!
         Select sateList = new Select(dropDownElement);
-        List<WebElement> options =sateList.getOptions();
+      /*  List<WebElement> options =sateList.getOptions();
         for (WebElement option : options){
             System.out.println("listOfElements = " + option.getText());
         }
-
+*/
         Thread.sleep(3000);
-        String actualOption = sateList.getFirstSelectedOption().getText();
+      //  String actualOption = sateList.getFirstSelectedOption().getText();
         sateList.selectByVisibleText("Texas");
         System.out.println("sateList.getOptions().size() = " + sateList.getOptions().size());
 
