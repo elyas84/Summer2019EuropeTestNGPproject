@@ -12,4 +12,5 @@ public class ContactInfoPage extends BasePage {
         @FindBy (xpath = "//a[@class='phone']")
         public WebElement phone;
 
+
     }
