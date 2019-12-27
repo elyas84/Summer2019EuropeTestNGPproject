@@ -66,12 +66,7 @@ public class homeWorks extends TestBase {
         CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
         calendarEventsPage.gridSettingBtn.click();
 
-      /*  WebElement checkBox = driver.findElement(By.xpath("//tbody[@class='ui-sortable']//td[3]"));
 
-        driver.findElement(By.xpath("//tbody[@class='ui-sortable']//td[3]//input[@id='column-c8430']")).click();
-      */
-
-    // can not di it! need the help!!!
     }
 
 
@@ -306,4 +301,67 @@ public class homeWorks extends TestBase {
 
     }
 
+    @Test
+
+    public void testCase11(){
+
+        extentLogger = report.createTest("Summary: Daily every 1 day, end by Nov 18, 2021”");
+
+        LoginPage loginPage = new LoginPage();
+        String username = ConfigurationReader.get("storemanager_username");
+        String password = ConfigurationReader.get("storemanager_password");
+        loginPage.login(username,password);
+        extentLogger.info("UserName"+username);
+        extentLogger.info("Password"+password);
+        extentLogger.info("login as StoreManager");
+
+        DashboardPage dashboardPage = new DashboardPage();
+        dashboardPage.navigateToModule("Activities","Calendar Events");
+        dashboardPage.waitUntilLoaderScreenDisappear();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+        calendarEventsPage.createCalendarEvent.click();
+
+
+        CreateCalendarEventsPage createCalendarEventsPage = new CreateCalendarEventsPage();
+        createCalendarEventsPage.repeat.click();
+        driver.findElement(By.xpath("(//input[@type='radio'])[5]")).click();
+        createCalendarEventsPage.by.sendKeys("Nov 18, 2021");
+
+        extentLogger.pass("Verify that following message as a summary is displayed: “Summary: Daily every 1 day, end by Nov 17, 2021");
+
+    }
+
+    @Test
+    public void testCase12(){
+
+        extentLogger = report.createTest("Summary: Daily every 1 day, end by Nov 18, 2021”");
+
+        LoginPage loginPage = new LoginPage();
+        String username = ConfigurationReader.get("storemanager_username");
+        String password = ConfigurationReader.get("storemanager_password");
+        loginPage.login(username,password);
+        extentLogger.info("UserName"+username);
+        extentLogger.info("Password"+password);
+        extentLogger.info("login as StoreManager");
+
+        DashboardPage dashboardPage = new DashboardPage();
+        dashboardPage.navigateToModule("Activities","Calendar Events");
+        dashboardPage.waitUntilLoaderScreenDisappear();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+        calendarEventsPage.createCalendarEvent.click();
+
+
+        CreateCalendarEventsPage createCalendarEventsPage = new CreateCalendarEventsPage();
+        createCalendarEventsPage.repeat.click();
+
+        Select select = new Select(createCalendarEventsPage.repeatOptions);
+        select.selectByIndex(1);
+        driver.findElement(By.xpath("//input[@value='monday']")).click();
+        driver.findElement(By.xpath("//input[@value='friday']")).click();
+        extentLogger.info("selecting monday");
+        extentLogger.info("selecting Friday");
+
+        extentLogger.pass("Weekly every 1 week onMonday, Friday");
+
+    }
 }
