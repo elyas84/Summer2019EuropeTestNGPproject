@@ -21,7 +21,7 @@ public class CalendarEventsPage extends BasePage {
 
         //Finding dote!!!!
         @FindBy(xpath = "//tbody/tr[18]/td[9]")
-        public WebElement donte;
+        public WebElement dote;
 
         //Finding Grid setting button
         @FindBy(xpath = "//i[@class='fa-cog hide-text']")

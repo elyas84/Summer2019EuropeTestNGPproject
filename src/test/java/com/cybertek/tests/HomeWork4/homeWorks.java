@@ -7,6 +7,7 @@ import com.cybertek.Pages.LoginPage;
 import com.cybertek.tests.TestBase;
 import com.cybertek.utilities.ConfigurationReader;
 import com.cybertek.utilities.Driver;
+import org.apache.http.entity.mime.content.StringBody;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -15,6 +16,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class homeWorks extends TestBase {
@@ -38,8 +40,9 @@ public class homeWorks extends TestBase {
 
         Actions actions = new Actions(driver);
 
-        actions.moveToElement(calendarEventsPage.donte).perform();
-        extentLogger.pass("Verify that “view”, “edit” and “delete” options are available");
+        actions.moveToElement(calendarEventsPage.dote).perform();
+        Assert.assertTrue(calendarEventsPage.dote.isDisplayed());
+       // extentLogger.pass("");
 
     }
 
@@ -66,6 +69,9 @@ public class homeWorks extends TestBase {
         CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
         calendarEventsPage.gridSettingBtn.click();
 
+        WebElement gridSetting = driver.findElement(By.xpath("(//tbody)[1]"));
+
+        //I can not do it!!
 
     }
 
@@ -140,12 +146,18 @@ public class homeWorks extends TestBase {
         calendarEventsPage.createCalendarEvent.click();
 
         CreateCalendarEventsPage createCalendarEventsPage= new CreateCalendarEventsPage();
-
         dashboardPage.waitUntilLoaderScreenDisappear();
 
+      /* WebElement startTime= driver.findElement(By.xpath("(//li[@class='ui-timepicker-pm ui-timepicker-selected'])[1])"));
+       WebElement endTime= driver.findElement(By.xpath("(//li[@class='ui-timepicker-pm ui-timepicker-selected'])[2]"));
 
-        //Can not calculate the difference between them.
-
+        System.out.println("startTime.getText() = " + startTime.getText());
+        System.out.println("endTime.getText() = " + endTime.getText());
+*/
+      // I cant do that, but my logic is, if could find the right locators and just by using simple get.text (), then
+        // I will print it a String form, then split few chars like ": AM" keep only have the number
+        // then covert it to the int i = Integer.par(String), then impalement the calculation!
+        //
     }
 
     @Test
