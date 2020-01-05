@@ -1,9 +1,6 @@
-package com.cybertek.tests.Day_16_Review;
+package com.cybertek.tests.Day16_Review;
 
-import com.cybertek.Pages.ContactInfoPage;
-import com.cybertek.Pages.ContactsPage;
-import com.cybertek.Pages.DashboardPage;
-import com.cybertek.Pages.LoginPage;
+import com.cybertek.Pages.*;
 import com.cybertek.tests.TestBase;
 import com.cybertek.utilities.ConfigurationReader;
 import org.testng.Assert;
@@ -14,7 +11,7 @@ public class verifyContactInfoTest extends TestBase {
    @Test
 
     public void contactDetailsTest(){
-      extentLogger = report.createTest("contactDetailsTest");
+      extentLogger = report.createTest("*");
        LoginPage loginPage = new LoginPage();
 
        String username = ConfigurationReader.get("salesmanager_username");

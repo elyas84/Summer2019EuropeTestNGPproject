@@ -16,7 +16,7 @@ public class PositiveLoginTest extends TestBase {
         String password = ConfigurationReader.get("driver_password");
         loginPage.login(username,password);
 
-      Assert.assertEquals(driver.getCurrentUrl(),"https://qa1.vytrack.com/");
+      Assert.assertEquals(driver.getCurrentUrl(),"https://qa3.vytrack.com/");
     }
 
     @Test
