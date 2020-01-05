@@ -17,11 +17,11 @@ public class verifyContactInfoTest extends TestBase {
       extentLogger = report.createTest("contactDetailsTest");
        LoginPage loginPage = new LoginPage();
 
-       String username = ConfigurationReader.get("driver_username");
-       String password = ConfigurationReader.get("driver_password");
+       String username = ConfigurationReader.get("salesmanager_username");
+       String password = ConfigurationReader.get("salesmanager_password");
        extentLogger.info("username: "+username);
        extentLogger.info("password: "+password);
-       extentLogger.info("Login as a Driver");
+       extentLogger.info("Login as a salaesmanager");
 
        loginPage.login(username,password);
 
@@ -37,7 +37,7 @@ public class verifyContactInfoTest extends TestBase {
 
         ContactInfoPage contactInfoPage = new ContactInfoPage();
         String actualFullName = contactInfoPage.fullname.getText();
-        String expectedFullName = "Ms Mariam Breakstone";
+        String expectedFullName = "Mariam Brackstone";
 
         contactInfoPage.waitUntilLoaderScreenDisappear();
         extentLogger.info("Verify fullName is "+expectedFullName);
@@ -49,13 +49,6 @@ public class verifyContactInfoTest extends TestBase {
 
         extentLogger.info("Verify phoneNumber +18982323434");
         Assert.assertEquals(contactInfoPage.phone.getText(),"+18982323434");
-
-
-
-
-
-
-
 
    }
 }
