@@ -28,18 +28,23 @@ public class ExcelUtilsDemo {
         System.out.println(qa1.rowCount());
         System.out.println(qa1.getColumnsNames());
 
-        List<Map<String, String>> dataList = qa3short.getDataList(); //alt+enter to get the menu!!!
+        // This we gonna not use, we gonna use Array instead
+
+        List<Map<String, String>> dataList = qa3short.getDataList(); //Alt+Enter to get the menu!!!
         //Map consist Key ans Value;
 
-        for (Map<String,String> oneRow: dataList){
-            System.out.println(oneRow);
+     //   for (Map<String,String> oneRow: dataList){
+           // System.out.println(oneRow);
             // With this we can get data one by one!!!
-        }
+       // }
 
        // System.out.println(dataList.get(0)); // By using index get (indexNumber), we can get the data in first row
 
+        System.out.println(dataList.get(0).get("firstname"));// This is how to deal with collections
 
-        String [] [] OneRowData = qa3short.getDataArray();
-        System.out.println(Arrays.deepToString(OneRowData));
+        String [] [] OneRowData = qa3short.getDataArray(); // 2D arrays
+
+       System.out.println(Arrays.deepToString(OneRowData));
+       // System.out.println("OneRowData = " + OneRowData); THIS IS ABSOLUTELY NOT WORKING BECAUSE IT POINTS A REFERENCE ADDRESS.
     }
 }
